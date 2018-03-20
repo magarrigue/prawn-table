@@ -12,6 +12,7 @@ Prawn::ManualBuilder::Example.generate("table.pdf", :page_size => "FOLIO") do
     p.section "Basics" do |s|
       s.example "creation"
       s.example "content_and_subtables"
+      s.example "arbitrary_content"
       s.example "flow_and_header"
       s.example "position"
     end
@@ -43,6 +44,7 @@ Prawn::ManualBuilder::Example.generate("table.pdf", :page_size => "FOLIO") do
       list( "How to create tables",
             "What content can be placed on tables",
             "Subtables (or tables within tables)",
+            "Adding arbitrary content to table cells",
             "How to style the whole table",
             "How to use initializer blocks to style only specific portions of the table"
           )

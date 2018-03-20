@@ -641,5 +641,24 @@ describe "Image cells" do
       @table.draw
     end
   end
+end
 
+describe "arbitrary content" do
+  include CellHelpers
+
+  before(:each) do
+    create_pdf
+  end
+
+  it "renders Prawn code inside a table cell" do
+    @cell = cell(:content => "")
+    @cell.render do |pdf|
+      pdf.rectangle([10, 10], 300, 100)
+    end
+
+    @table = @pdf.make_table([[@cell]], :width => @pdf.bounds.width)
+    expect(@pdf).to receive(:rectangle).with([10, 10], 300, 100)
+
+    @table.draw
+  end
 end

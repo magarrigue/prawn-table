@@ -428,6 +428,10 @@ module Prawn
                             :width  => spanned_content_width + FPTolerance,
                             :height => spanned_content_height + FPTolerance) do
             draw_content
+
+            if @render_block
+              @render_block.call(@pdf)
+            end
           end
         end
       end
@@ -777,6 +781,12 @@ module Prawn
         raise NotImplementedError, "subclasses must implement draw_content"
       end
 
+      # capture a block to be called after standard draw_content,
+      # allowing arbitrary Prawn rendering inside a table cell
+      #
+      def render(&blk)
+        @render_block = blk
+      end
     end
   end
 end
